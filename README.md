@@ -1,60 +1,47 @@
-#Build a Simple Blockchain Simulation 🚀
+# Build a Simple Blockchain Simulation 🚀
 
 This project is a basic blockchain simulation implemented in Python. It features SHA-256 hashing, Proof-of-Work (PoW), timestamped blocks, and tamper detection to demonstrate the core principles of blockchain technology.
 
-📌 Features
+## 📌 Features
+✅ **Block Structure** – Each block contains a timestamp, data, hash, previous hash, and proof-of-work.
+✅ **SHA-256 Hashing** – Ensures data integrity and security.
+✅ **Proof-of-Work (PoW)** – Implements mining difficulty to secure the blockchain.
+✅ **Tampering Detection** – Detects and reports any block modifications.
+✅ **Timestamp Logging** – Records block creation times.
+✅ **Blockchain Validation** – Verifies chain integrity to prevent attacks.
 
-✅ Block Structure – Each block contains a timestamp, data, hash, previous hash, and proof-of-work.
+---
 
-✅ SHA-256 Hashing – Ensures data integrity and security.
-
-✅ Proof-of-Work (PoW) – Implements mining difficulty to secure the blockchain.
-
-✅ Tampering Detection – Detects and reports any block modifications.
-
-✅ Timestamp Logging – Records block creation times.
-
-✅ Blockchain Validation – Verifies chain integrity to prevent attacks.
-
-
-🛠️ Installation
-
-Step 1: Clone the Repository
-
+## 🛠️ Installation
+### Step 1: Clone the Repository
+```bash
 git clone https://github.com/S-Shivaprasad/Build-a-Simple-Blockchain-Simulation.git
-
 cd Build-a-Simple-Blockchain-Simulation
-
-Step 2: Install Dependencies (if required)
-
+```
+### Step 2: Install Dependencies (if required)
+```bash
 pip install -r requirements.txt
-
-Step 3: Run the Simulation
-
+```
+### Step 3: Run the Simulation
+```bash
 python blockchain.py
+```
 
-📜 Code Explanation
+---
 
-1️⃣ Block Class
+## 🌟 Code Explanation
 
+### 1️⃣ Block Class
 Each block contains:
+- **Index:** Block number in the chain
+- **Timestamp:** Records when the block is created
+- **Data:** Transaction or message stored in the block
+- **Previous Hash:** Links the block to the previous one
+- **Nonce (Proof-of-Work):** Required to solve the PoW challenge
+- **Hash:** Unique SHA-256 hash of the block
 
-Index: Block number in the chain
-
-Timestamp: Records when the block is created
-
-Data: Transaction or message stored in the block
-
-Previous Hash: Links the block to the previous one
-
-Nonce (Proof-of-Work): Required to solve the PoW challenge
-
-Hash: Unique SHA-256 hash of the block
-
-python
-
+```python
 import hashlib
-
 import time
 
 class Block:
@@ -77,19 +64,15 @@ class Block:
             if hash_attempt[:self.difficulty] == "0" * self.difficulty:
                 return nonce, hash_attempt
             nonce += 1
-2️⃣ Blockchain Class
+```
 
-Creates the Genesis Block
+### 2️⃣ Blockchain Class
+- Creates the **Genesis Block**
+- Adds **new blocks** after mining
+- Validates the entire blockchain
+- Detects **tampered blocks**
 
-Adds new blocks after mining
-
-Validates the entire blockchain
-
-Detects tampered blocks
-
-python
-Copy
-Edit
+```python
 class Blockchain:
     def __init__(self, difficulty=4):
         self.chain = [self.create_genesis_block()]
@@ -115,64 +98,58 @@ class Blockchain:
                 print(f"Block {i} is not correctly linked!")
                 return False
         return True
-3️⃣ Running the Blockchain Simulation
-python
+```
 
+### 3️⃣ Running the Blockchain Simulation
+```python
 # Create a Blockchain
 my_blockchain = Blockchain()
 
 # Add new blocks
-my_blockchain.add_block("Transaction 1: Alice -> Bob: $10")
-my_blockchain.add_block("Transaction 2: Bob -> Charlie: $5")
-my_blockchain.add_block("Transaction 3: Charlie -> Dave: $3")
+my_blockchain.add_block("Transaction 1: Shivaprasad -> Shashank: $10")
+my_blockchain.add_block("Transaction 2: Shashank -> Abhinay: $5")
+my_blockchain.add_block("Transaction 3: Abhinay -> Ajay: $4")
 
 # Validate Blockchain
-
 if my_blockchain.is_chain_valid():
     print("Blockchain is valid! ✅")
-    
 else:
     print("Blockchain has been tampered! ❌")
-    
-🔍 Example Output
-mathematica
+```
 
+---
+
+## 🔍 Example Output
+```
 Block 1 mined! Hash: 0000a5f8b3c1d...
-
 Block 2 mined! Hash: 00001e7c2bfa4...
-
 Block 3 mined! Hash: 0000349c8e6fd...
-
 Blockchain is valid! ✅
+```
 
-⚡ Testing Tampering Detection
+---
 
+## ⚡ Testing Tampering Detection
 Modify a block manually and check for tampering:
-
-
-my_blockchain.chain[1].data = "Tampered Transaction"
-
+```python
+my_blockchain.chain[3].data = "Tampered Transaction"
 if my_blockchain.is_chain_valid():
-
     print("Blockchain is valid! ✅")
-    
 else:
-
     print("Blockchain has been tampered! ❌")
-    
-🛑 Output:
+```
 
-Block 1 has been tampered!
-
+### 🛑 Output:
+```
+Block 3 has been tampered!
 Blockchain has been tampered! ❌
+```
 
-📜 License
+---
 
-This project is released under the MIT License.
+## 📝 License
+This project is released under the **MIT License**.
 
-
-📬 Contributions
-
+## 📩 Contributions
 Feel free to contribute by submitting a pull request! 🚀
-
 
